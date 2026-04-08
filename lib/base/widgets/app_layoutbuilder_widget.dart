@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ticketapp/base/res/styles/app_styles.dart';
 
 class AppLayoutBuilderWidget extends StatelessWidget {
   final int randomDivider;
   final double width;
-  const AppLayoutBuilderWidget({super.key, required this.randomDivider, this.width = 3});
+  final bool? isColor;
+  const AppLayoutBuilderWidget({super.key, required this.randomDivider, this.width = 3, this.isColor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,8 @@ class AppLayoutBuilderWidget extends StatelessWidget {
           width: width, height: 1,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: Colors.white
-          ),),
+              color: isColor == null ? AppStyles.ticketColor : AppStyles.planeSecondColor
+            ),),
         ))
       );
     });

@@ -26,7 +26,10 @@ class SearchScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          AppTicketsTabs(),
+          AppTicketsTabs(
+            firstTab: 'Airline Tickets',
+            secondTab: 'Hotels',
+          ),
           SizedBox(height: 25),
           AppTexxtIcon(icon: Icons.flight_takeoff_rounded, text: "Departure"),
           SizedBox(height: 20),
