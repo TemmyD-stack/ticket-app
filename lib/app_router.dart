@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ticketapp/base/bottom_nav_bar.dart';
 import 'package:ticketapp/screens/home/widgets/all_hotels.dart';
 import 'package:ticketapp/screens/home/widgets/all_tickets.dart';
+import 'package:ticketapp/screens/hotel_detail.dart';
 import 'package:ticketapp/screens/tickets/ticket_screen.dart';
 
 class AppRouter {
@@ -16,6 +17,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const TicketScreen(), settings: settings,);
      case '/all_hotels':
         return MaterialPageRoute(builder: (_) => const AllHotels());
+      case '/hotel_detail':
+        return MaterialPageRoute(builder: (_) => const HotelDetail(), settings: settings,);
       // Add other routes here
 
       

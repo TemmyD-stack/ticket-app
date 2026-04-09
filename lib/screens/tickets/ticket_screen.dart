@@ -20,16 +20,14 @@ class _TicketScreenState extends State<TicketScreen> {
   late int ticketIndex = 0;
   @override
   void didChangeDependencies() {
+    if(ModalRoute.of(context)!.settings.arguments != null){
+      var args = ModalRoute.of(context)!.settings.arguments as Map;
+      // print('passed index ${args["index"]}');
+      ticketIndex = args["index"] ?? 0;
+    }
+    
     super.didChangeDependencies();
-    final args = ModalRoute.of(context)!.settings.arguments;
-    if (args is Map && args.containsKey("index")) {
-    setState(() {
-      ticketIndex = args["index"];
-    });
-    print("Successfully updated ticketIndex to: $ticketIndex");
-  } else {
-    print("Warning: Arguments are null or not a Map");
-  }
+
 
   }
 

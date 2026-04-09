@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 AppDoubleText(
                   bigText: 'Hotels',
                   smallText: 'View all',
-                  func: () => Navigator.pushNamed(context, AppRoutes.allTickets),
+                  func: () => Navigator.pushNamed(context, AppRoutes.allHotels),
                 ),
                 SizedBox(height: 20),
                 SingleChildScrollView(
