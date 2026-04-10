@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/base/res/styles/app_styles.dart';
 
-class AppTexxtIcon extends StatelessWidget {
+class AppTextIcon extends StatelessWidget {
   final String text;
   final IconData icon;
-  const AppTexxtIcon({super.key, required this.text, required this.icon});
+  const AppTextIcon({super.key, required this.text, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      padding: EdgeInsets.all( 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
