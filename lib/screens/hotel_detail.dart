@@ -12,13 +12,16 @@ class HotelDetail extends StatefulWidget {
 
 class _HotelDetailState extends State<HotelDetail> {
   late int index = 0;
- @override
+  @override
   void didChangeDependencies() {
-    var args = ModalRoute.of(context)!.settings.arguments as Map;
-    // print(args["index"]);
-    index = args["index"];
-    super.didChangeDependencies();
+    if (ModalRoute.of(context)!.settings.arguments != null) {
+      var args = ModalRoute.of(context)!.settings.arguments as Map;
+      // print(args["index"]);
+      index = args["index"];
+      super.didChangeDependencies();
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,14 +35,14 @@ class _HotelDetailState extends State<HotelDetail> {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
-                 Navigator.pop(context);
+                  Navigator.pop(context);
                 },
-                child:Container(
+                child: Container(
                   decoration: BoxDecoration(
-                   shape: BoxShape.circle,
+                    shape: BoxShape.circle,
                     color: AppStyles.primaryColor,
                   ),
-                  child: Icon(Icons.arrow_back, color: Colors.white,),
+                  child: Icon(Icons.arrow_back, color: Colors.white),
                 ),
               ),
             ),
@@ -48,41 +51,42 @@ class _HotelDetailState extends State<HotelDetail> {
                 children: [
                   Positioned.fill(
                     child: Image.asset(
-                      "assets/images/${hotelList[index]['image']}", 
-                    fit: BoxFit.cover,
-                    ),),
+                      "assets/images/${hotelList[index]['image']}",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   Positioned(
                     bottom: 20,
                     right: 20,
-                    child:  Container(
+                    child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       color: Colors.black54,
-                      child: Text(hotelList[index]['place'], 
-                      style: TextStyle(
-                        color: Colors.white, 
-                        fontSize: 24, 
-                        shadows: [
-                        Shadow(
-                          color: AppStyles.primaryColor,
-                          blurRadius: 10,
-                          offset: Offset(2, 2),
+                      child: Text(
+                        hotelList[index]['place'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          shadows: [
+                            Shadow(
+                              color: AppStyles.primaryColor,
+                              blurRadius: 10,
+                              offset: Offset(2, 2),
+                            ),
+                          ],
                         ),
-                      ],),)
-                      ) ,
-                  )
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              
-              ),
             ),
-        
+          ),
+
           SliverList(
             delegate: SliverChildListDelegate([
               Padding(
                 padding: EdgeInsets.all(16),
-                child: ExpandedTextWidget(
-                  text: hotelList[index]['detail'],
-                ),
+                child: ExpandedTextWidget(text: hotelList[index]['detail']),
               ),
               Padding(
                 padding: EdgeInsets.all(16),
@@ -100,9 +104,9 @@ class _HotelDetailState extends State<HotelDetail> {
                     return Container(
                       margin: EdgeInsets.all(8),
                       color: Colors.red,
-                      
+
                       child: Image.asset(
-                        'assets/images/${hotelList[index]['images'][imagesIndex]}', 
+                        'assets/images/${hotelList[index]['images'][imagesIndex]}',
                         fit: BoxFit.cover,
                       ),
                     );
@@ -116,4 +120,3 @@ class _HotelDetailState extends State<HotelDetail> {
     );
   }
 }
-
