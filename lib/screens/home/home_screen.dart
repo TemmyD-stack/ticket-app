@@ -5,6 +5,7 @@ import 'package:ticketapp/base/res/styles/app_styles.dart';
 import 'package:ticketapp/base/utils/app_json.dart';
 import 'package:ticketapp/base/utils/app_routes.dart';
 import 'package:ticketapp/base/widgets/app_double_text.dart';
+import 'package:ticketapp/base/widgets/heading_text.dart';
 import 'package:ticketapp/base/widgets/ticket_view.dart';
 import 'package:ticketapp/screens/home/hotel.dart';
 
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text('Good Morning', style: AppStyles.headLineStyle3),
                         SizedBox(height: 5),
-                        Text('Book Tickets', style: AppStyles.headLineStyle1),
+                        HeadingText(text: 'Book Tickets', isColor: false),
                       ],
                     ),
 
@@ -81,7 +82,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: ticketList.take(2).map((singleTicket) => TicketView(ticket: singleTicket)).toList(),
+                    children: ticketList.take(2).map((singleTicket) => GestureDetector(
+                      onTap: (){
+                        var index = ticketList.indexOf(singleTicket);
+                    // print('index: $index');
+                    Navigator.pushNamed(context, AppRoutes.ticketScreen, arguments: {"index": index,});
+                      },
+                      child: TicketView(ticket: singleTicket))).toList(),
                   ),
                 ),
                 SizedBox(height: 40),
@@ -94,7 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: hotelList.take(2).map((singleHotel) => Hotel(hotel: singleHotel)).toList(),
+                    children: hotelList.take(2).map((singleHotel) => GestureDetector(
+                      onTap: (){
+                        var index = hotelList.indexOf(singleHotel);
+                         Navigator.pushNamed(context, AppRoutes.hotelDetail, arguments: {"index": index});
+                      },
+                      child: Hotel(hotel: singleHotel))).toList(),
                   ),
                 )
               ],

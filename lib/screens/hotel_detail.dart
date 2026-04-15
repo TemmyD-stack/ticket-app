@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/base/res/styles/app_styles.dart';
 import 'package:ticketapp/base/utils/app_json.dart';
+import 'package:ticketapp/base/widgets/expanded_text_widget.dart';
 
 class HotelDetail extends StatefulWidget {
   const HotelDetail({super.key});
@@ -56,7 +57,8 @@ class _HotelDetailState extends State<HotelDetail> {
                     child:  Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       color: Colors.black54,
-                      child: Text(hotelList[index]['place'], style: TextStyle(
+                      child: Text(hotelList[index]['place'], 
+                      style: TextStyle(
                         color: Colors.white, 
                         fontSize: 24, 
                         shadows: [
@@ -78,8 +80,8 @@ class _HotelDetailState extends State<HotelDetail> {
             delegate: SliverChildListDelegate([
               Padding(
                 padding: EdgeInsets.all(16),
-                child: Text(
-                  'A hotel is an establishment providing paid, short-term lodging, ranging from basic, budget-friendly rooms to luxurious, high-end suites. These properties often feature amenities such as swimming pools, restaurants, business centers, gyms, and conference facilities to enhance the guest experience. The primary goal is to provide comfort, safety, and convenience for travelers away from home, with rooms generally offering beds, private bathrooms, and entertainment options.',
+                child: ExpandedTextWidget(
+                  text: hotelList[index]['detail'],
                 ),
               ),
               Padding(
@@ -89,17 +91,20 @@ class _HotelDetailState extends State<HotelDetail> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 200,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
+                  itemCount: hotelList[index]['images'].length,
+                  itemBuilder: (context, imagesIndex) {
                     return Container(
                       margin: EdgeInsets.all(8),
                       color: Colors.red,
                       
-                      child: Image.network('https://placehold.co/200x200.png'),
+                      child: Image.asset(
+                        'assets/images/${hotelList[index]['images'][imagesIndex]}', 
+                        fit: BoxFit.cover,
+                      ),
                     );
                   },
                 ),
@@ -111,3 +116,4 @@ class _HotelDetailState extends State<HotelDetail> {
     );
   }
 }
+

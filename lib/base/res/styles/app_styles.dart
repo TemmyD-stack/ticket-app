@@ -16,6 +16,8 @@ class AppStyles{
   static Color ticketColor = Colors.white;
   static Color bigDotColor = const Color(0xff8accf7);
   static Color planeSecondColor = const Color(0xffbaccf7);
+  static Color profileLocationColor = const  Color(0xfffef4f3);
+  static Color premiumStatusColor = const Color(0xff526799);
 
 
   static TextStyle textStyle = TextStyle(
