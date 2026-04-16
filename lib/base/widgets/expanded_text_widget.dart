@@ -1,45 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ticketapp/base/res/styles/app_styles.dart';
+import 'package:ticketapp/controller/text_expansion_controller.dart';
 
-class ExpandedTextWidget extends StatefulWidget {
-  const ExpandedTextWidget({super.key, required this.text, });
+class ExpandedTextWidget extends StatelessWidget {
+  ExpandedTextWidget({super.key, required this.text, });
   final String text;
 
-  @override
-  State<ExpandedTextWidget> createState() => _ExpandedTextWidgetState();
-}
 
-class _ExpandedTextWidgetState extends State<ExpandedTextWidget> {
-  bool isExpanded = false;
-
-   void _toggleExpanded() {
-       setState(() {
-      isExpanded = !isExpanded;
-    });}
-
-
-
+  final TextExpansionController controller = Get.put(TextExpansionController());
   @override
   Widget build(BuildContext context) {
   
-    var textWidget = Text(
-      widget.text,
-      maxLines: isExpanded ? null : 9,
-      overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+    
+    return Obx((){
+      var textWidget = Text(
+      text,
+      maxLines: controller.isExpanded.value ? null : 9,
+      overflow: controller.isExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
     );
-    return Column(
+      return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         textWidget,
         GestureDetector(
-          onTap: () => _toggleExpanded(),
+          onTap: () => controller.toggleExpanded(),
            child: Text(
-            isExpanded ? 'Less' : 'More',
+            controller.isExpanded.value ? 'Less' : 'More',
             style: AppStyles.headLineStyle3.copyWith( color: AppStyles.findTicketsColor),
           ),
         ),
   
       ],
     );
+    });
   }
 }

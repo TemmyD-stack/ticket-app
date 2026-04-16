@@ -120,7 +120,7 @@ class TicketPromotion extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'heart ',
+                    '😍 🥰 💖',
                     style: AppStyles.headLineStyle2.copyWith(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
